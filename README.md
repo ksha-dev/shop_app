@@ -19,6 +19,8 @@ The following were learnt during the development of the project
 - Async Await functionalities
 - Loading Spinners
 - Error Handling
+- Future Builder
+- Try catch block
 
 A few resources to get you started if this is your first Flutter project:
 
