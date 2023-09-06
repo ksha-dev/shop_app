@@ -1,4 +1,4 @@
-import 'package:shop_app/models/category.dart';
+import '/models/category.dart';
 
 class GroceryItem {
   final String id;

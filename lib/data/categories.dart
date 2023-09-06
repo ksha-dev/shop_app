@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/models/category.dart';
+import '/models/category.dart';
 
 const Map<Categories, Category> categories = {
   Categories.vegetables: Category('Vegetables', Color.fromARGB(255, 0, 255, 128)),

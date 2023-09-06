@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/widgets/grocery_list.dart';
+import '/widgets/grocery_list.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: const Color.fromARGB(255, 50, 58, 60),
       ),
+      debugShowCheckedModeBanner: false,
       home: const GroceryList(),
     );
   }

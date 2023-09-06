@@ -1,10 +1,20 @@
-# shop_app
+# Shopping List Application
 
-A new Flutter project.
+This is a flutter application with is a basic model of a Shopping List Mobile Application
 
-## Getting Started
+## Key Takeaways of the learning
 
-This project is a starting point for a Flutter application.
+The following were learnt during the development of the project
+
+- Form
+- Dropdown Button Form Field
+- Text Form Field
+- Global Keys
+- Dismissible
+- Value passing in Navigator
+- Dynamic UI Updates
+- Custom Models
+- Enum creations
 
 A few resources to get you started if this is your first Flutter project:
 
