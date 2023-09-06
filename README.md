@@ -15,6 +15,10 @@ The following were learnt during the development of the project
 - Dynamic UI Updates
 - Custom Models
 - Enum creations
+- HTTP Requests
+- Async Await functionalities
+- Loading Spinners
+- Error Handling
 
 A few resources to get you started if this is your first Flutter project:
 

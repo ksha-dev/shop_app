@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
 import '/models/category.dart';
 import '/models/grocery_item.dart';
 import '../data/categories.dart';
@@ -15,11 +19,21 @@ class _NewItemState extends State<NewItem> {
   String _enteredName = '';
   int _enteredQuantity = 1;
   Category _selectedCategory = categories[Categories.vegetables]!;
+  bool _isSending = false;
 
-  void _saveItem() {
+  void _saveItem() async {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-      Navigator.of(context).pop(GroceryItem(id: DateTime.now().toString(), name: _enteredName, quantity: _enteredQuantity, category: _selectedCategory));
+      setState(() => _isSending = true);
+      final response = await http.post(
+        Uri.https('flutter---shopapp-b0f9a-default-rtdb.firebaseio.com', 'shopping_list.json'),
+        headers: {'Content-Type': 'application/json'},
+        body: json.encode({'name': _enteredName, 'quantity': _enteredQuantity, 'category': _selectedCategory.title}),
+      );
+
+      final responseData = json.decode(response.body);
+
+      if (context.mounted) Navigator.pop(context, GroceryItem(id: responseData["name"], name: _enteredName, quantity: _enteredQuantity, category: _selectedCategory));
     }
   }
 
@@ -76,9 +90,17 @@ class _NewItemState extends State<NewItem> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: () => _formKey.currentState!.reset(), child: const Text('Reset')),
+                  TextButton(onPressed: _isSending ? null : () => _formKey.currentState!.reset(), child: const Text('Reset')),
                   const SizedBox(width: 12),
-                  ElevatedButton(onPressed: _saveItem, child: const Text('Add Item')),
+                  ElevatedButton(
+                      onPressed: _isSending ? null : _saveItem,
+                      child: _isSending
+                          ? const SizedBox(
+                              height: 16,
+                              width: 16,
+                              child: CircularProgressIndicator(),
+                            )
+                          : const Text('Add Item')),
                 ],
               ),
             ],
